@@ -2,3 +2,4 @@ Flask
 Flask-SQLAlchemy
 uvicorn
 gunicorn
+pyodbc
