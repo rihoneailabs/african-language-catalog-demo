@@ -25,29 +25,30 @@ The African Languages Catalog is a web application designed to showcase and prov
 ## Installation
 
 1. Clone the repository:
-   ```
+   ```bash
    git clone https://github.com/ndamulelonemakh/afri-lingo-idx.git
    cd afri-lingo-idx.
    ```
 
 2. Set up a virtual environment:
-   ```
+   ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
 
 3. Install the required packages:
-   ```
+   ```bash
    pip install -r requirements.txt
    ```
 
 4. Initialize the database:
-   ```
+   ```bash
    python seed.py
    ```
 
 5. Run the application:
-   ```
+   ```bash
+   export SECRET_KEY=<enter-a-random-secret-key>
    FLASK_APP=application flask --app application:app run --host 0.0.0.0 --reload
    ```
 
