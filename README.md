@@ -4,6 +4,8 @@
 
 The African Languages Catalog is a web application designed to showcase and provide information about the diverse languages spoken across the African continent. This project aims to celebrate linguistic diversity, promote language preservation, and serve as an educational resource for anyone interested in African languages.
 
+![Home page screenshot](./homepage.png)
+
 ## Features
 
 - Browse languages by region
