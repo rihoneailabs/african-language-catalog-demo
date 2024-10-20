@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ category }} Languages - African Languages Catalog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-amber-50">
+  <header class="bg-amber-600 text-white p-4">
+    <div class="container mx-auto">
+      <h1 class="text-3xl font-bold">African Languages Catalog</h1>
+      <nav class="mt-4">
+        <a href="/" class="mr-4 hover:underline">Home</a>
+        <a href="/about" class="mr-4 hover:underline">About</a>
+        <a href="/#categories" class="hover:underline">Categories</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto mt-8 p-4">
+    <h2 class="text-2xl font-semibold mb-6">Languages in {{ category }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for language in languages %}
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="p-6">
+          <h3 class="font-bold text-xl mb-2">{{ language.name }}</h3>
+          <p class="text-sm text-gray-500 mb-2">Speakers: {{ language.speakers | format_number }}</p>
+          <p class="text-sm text-gray-500 mb-2">Family: {{ language.language_family }}</p>
+          <p class="text-sm text-gray-500 mb-4">Countries: {{ language.countries }}</p>
+          <a href="{{ url_for('view_language', language_id=language.id) }}" class="text-amber-600 hover:underline">Learn
+            more</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+
+  <footer class="bg-amber-800 text-white mt-12 py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Rihone AI Labs. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

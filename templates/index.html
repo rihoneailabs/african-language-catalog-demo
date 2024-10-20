@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>African Languages Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-amber-50 flex-col min-h-screen">
+    <header class="bg-amber-600 text-white p-4">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold">African Languages Catalog</h1>
+            <nav class="mt-4">
+                <a href="/" class="mr-4 hover:underline">Home</a>
+                <a href="/about" class="mr-4 hover:underline">About</a>
+                <a href="#categories" class="hover:underline">Categories</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto mt-8 p-4 flex-1">
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-4">Featured Languages</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {% for language in featured_languages %}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">{{ language.name }}</h3>
+                        <p class="text-gray-600 mb-2">{{ language.category }}</p>
+                        <p class="text-sm text-gray-500 mb-2">Speakers: {{ language.speakers | format_number }}</p>
+                        <p class="text-sm text-gray-500 mb-4">Family: {{ language.language_family }}</p>
+                        <a href="{{ url_for('view_language', language_id=language.id) }}"
+                            class="text-amber-600 hover:underline">Learn more</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="categories" class="mb-12">
+            <h2 class="text-2xl font-semibold mb-4">Explore by Region</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {% for category in categories %}
+                <a href="{{ url_for('view_category', category=category) }}"
+                    class="bg-amber-100 rounded-lg p-4 text-center hover:bg-amber-200 transition duration-300">
+                    {{ category }}
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Discover African Languages</h2>
+            <p class="text-gray-700 mb-4">
+                Africa is home to an incredible diversity of languages, with estimates ranging from 1,500 to 2,000
+                distinct languages.
+                Explore our catalog to learn about these languages, their speakers, and the regions where they are
+                spoken.
+            </p>
+            <a href="/about"
+                class="inline-block bg-amber-600 text-white px-6 py-2 rounded hover:bg-amber-700 transition duration-300">Learn
+                More</a>
+        </section>
+    </main>
+
+    <footer class="bg-amber-800 text-white mt-12 py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Rihone AI Labs. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
