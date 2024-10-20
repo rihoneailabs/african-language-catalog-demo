@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribute - African Languages Catalog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-amber-50">
+    <header class="bg-amber-600 text-white p-4">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold">African Languages Catalog</h1>
+            <nav class="mt-4">
+                <a href="/" class="mr-4 hover:underline">Home</a>
+                <a href="/about" class="mr-4 hover:underline">About</a>
+                <a href="/contribute" class="mr-4 hover:underline">Contribute</a>
+                <a href="/#categories" class="hover:underline">Categories</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto mt-8 p-4">
+        <h2 class="text-3xl font-semibold mb-6">Contribute to Our Catalog</h2>
+        
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h3 class="text-xl font-semibold mb-4">How You Can Help</h3>
+            <p class="mb-4">
+                The African Languages Catalog thrives on community contributions. Your knowledge and expertise can help us create a more comprehensive and accurate resource. Here are some ways you can contribute:
+            </p>
+            <ul class="list-disc list-inside mb-4">
+                <li>Add information about a language not yet in our catalog</li>
+                <li>Suggest updates or corrections to existing language entries</li>
+                <li>Provide audio recordings of languages you speak</li>
+                <li>Share cultural context or interesting facts about a language</li>
+                <li>Help translate our website into more languages</li>
+            </ul>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h3 class="text-xl font-semibold mb-4">Submission Form</h3>
+            <form action="/submit_contribution" method="POST" class="space-y-4">
+                <div>
+                    <label for="name" class="block mb-1">Your Name:</label>
+                    <input type="text" id="name" name="name" required class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label for="email" class="block mb-1">Your Email:</label>
+                    <input type="email" id="email" name="email" required class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label for="language" class="block mb-1">Language Name:</label>
+                    <input type="text" id="language" name="language" required class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <label for="contribution_type" class="block mb-1">Type of Contribution:</label>
+                    <select id="contribution_type" name="contribution_type" required class="w-full p-2 border rounded">
+                        <option value="">Select type</option>
+                        <option value="new_language">New Language Entry</option>
+                        <option value="update">Update Existing Entry</option>
+                        <option value="audio">Audio Recording</option>
+                        <option value="cultural_info">Cultural Information</option>
+                        <option value="translation">Website Translation</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="content" class="block mb-1">Your Contribution:</label>
+                    <textarea id="content" name="content" rows="5" required class="w-full p-2 border rounded"></textarea>
+                </div>
+                <div>
+                    <label for="source" class="block mb-1">Source of Information (if applicable):</label>
+                    <input type="text" id="source" name="source" class="w-full p-2 border rounded">
+                </div>
+                <div>
+                    <button type="submit" class="bg-amber-600 text-white px-4 py-2 rounded hover:bg-amber-700">Submit Contribution</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-xl font-semibold mb-4">What Happens Next?</h3>
+            <p class="mb-4">
+                After you submit your contribution:
+            </p>
+            <ol class="list-decimal list-inside">
+                <li>Our team will review your submission for accuracy and relevance.</li>
+                <li>We may reach out to you for additional information or clarification if needed.</li>
+                <li>If approved, your contribution will be added to the catalog, and you'll be credited for your help (unless you prefer to remain anonymous).</li>
+                <li>We'll notify you by email when your contribution has been published.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer class="bg-amber-800 text-white mt-12 py-6">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Rihone AI Labs. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

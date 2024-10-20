@@ -1,9 +1,11 @@
+import os
 from datetime import datetime
 
-from flask import Flask, render_template
+from flask import Flask, flash, redirect, render_template, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.secret_key = os.environ["SECRET_KEY"]
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
 db = SQLAlchemy(app)
 
@@ -21,6 +23,21 @@ class CatalogItem(db.Model):
 
     def __repr__(self):
         return f"<Language {self.name}>"
+
+
+class Contribution(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    language = db.Column(db.String(100), nullable=False)
+    contribution_type = db.Column(db.String(50), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    source = db.Column(db.String(200))
+    submitted_at = db.Column(db.DateTime, default=datetime.utcnow)
+    status = db.Column(db.String(20), default="pending")  # pending, approved, rejected
+
+    def __repr__(self):
+        return f"<Contribution {self.id} - {self.language}>"
 
 
 @app.route("/")
@@ -51,6 +68,39 @@ def view_language(language_id):
 @app.route("/about")
 def view_about():
     return render_template("about.html")
+
+
+@app.route("/contribute", methods=["GET"])
+def contribute():
+    return render_template("contribute.html")
+
+
+@app.route("/submit_contribution", methods=["POST"])
+def submit_contribution():
+    # Extract data from form
+    name = request.form.get("name")
+    email = request.form.get("email")
+    language = request.form.get("language")
+    contribution_type = request.form.get("contribution_type")
+    content = request.form.get("content")
+    source = request.form.get("source")
+
+    # Create new Contribution object
+    new_contribution = Contribution(
+        name=name, email=email, language=language, contribution_type=contribution_type, content=content, source=source
+    )
+
+    try:
+        # Add to database
+        db.session.add(new_contribution)
+        db.session.commit()
+        flash("Thank you for your contribution! Our team will review it shortly.", "success")
+    except Exception as e:
+        db.session.rollback()
+        flash("An error occurred while submitting your contribution. Please try again.", "error")
+        print(f"Error: {str(e)}")  # Log the error for debugging
+
+    return redirect(url_for("contribute"))
 
 
 if __name__ == "__main__":

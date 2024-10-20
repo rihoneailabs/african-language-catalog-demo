@@ -24,8 +24,8 @@ The African Languages Catalog is a web application designed to showcase and prov
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/african-languages-catalog.git
-   cd african-languages-catalog
+   git clone https://github.com/ndamulelonemakh/afri-lingo-idx.git
+   cd afri-lingo-idx.
    ```
 
 2. Set up a virtual environment:
@@ -46,7 +46,7 @@ The African Languages Catalog is a web application designed to showcase and prov
 
 5. Run the application:
    ```
-   flask run
+   FLASK_APP=application flask run
    ```
 
 6. Open a web browser and navigate to `http://localhost:5000`
