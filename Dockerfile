@@ -13,6 +13,9 @@ FROM python:3.12-slim AS runtime
 RUN useradd -m appuser
 WORKDIR /app
 
+# Install azure sql deps
+RUN apt-get install unixodbc-dev && apt-get install msodbcsql18
+
 # Copy Python dependencies from builder stage
 COPY --from=builder /app/wheels /wheels
 COPY --from=builder /app/requirements.txt .
