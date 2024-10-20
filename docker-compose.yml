@@ -8,4 +8,5 @@ services:
       - ./instance/site.db:/app/site.db
     environment:
       - FLASK_ENV=development
-    command: ["python", "application.py"] 
+      - SECRET_KEY=0b53868cef9425590509a6c9c51762ce
+    command: ["flask", "--app", "application:app", "run",  "--host", "0.0.0.0"] 

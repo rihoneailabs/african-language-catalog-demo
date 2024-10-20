@@ -11,15 +11,14 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /app/wheels -r requirements.t
 
 FROM python:3.12-slim AS runtime
 
-
+# We need the odbc drivers at runtime
 # https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver16
-RUN apt-get update \
-    && apt-get install -y curl gnupg2 apt-transport-https ca-certificates unixodbc-dev \
-    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/debian/11/prod.list | tee /etc/apt/sources.list.d/msprod.list \
-    && apt-get update \
-    && ACCEPT_EULA=Y apt-get install -y msodbcsql18 \
-    && apt-get clean -y
+# first install curl
+RUN apt-get update && apt-get install -y curl &&  apt-get install -y gpg
+RUN curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft-prod.gpg
+RUN curl https://packages.microsoft.com/config/debian/12/prod.list | tee /etc/apt/sources.list.d/mssql-release.list
+RUN apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql18
+RUN apt-get purge -y curl gpg
 
 RUN useradd -m appuser
 WORKDIR /app
